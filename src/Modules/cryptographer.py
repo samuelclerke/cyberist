@@ -1,19 +1,30 @@
-import cryptographer as crypt
-
 class cryptographer:
   def __init__(self):
     print('┌────────────────────┐')
     print('│ Cryptographer Mode │')
     print('└────────────────────┘')
+    self.helpFunc()
 
-  def AES_256(key: str) -> str:
+  def SYM_AES256(self, key: str) -> str:
     pass
 
-  def AES_128(key: str) -> str:
+  def SYM_AES128(self, key: str) -> str:
     pass
 
-  def HASH_SHA256(input: str) -> str:
+  def HASH_SHA256(self, input: str) -> str:
     pass
 
-  def HASH_MD5(input: str) -> str:
+  def HASH_MD5(self, input: str) -> str:
     pass
+
+  def helpFunc(self) -> None:
+    print('Cryptocrapher Mode Help')
+    print('\nTypes: ')
+    print('  -  Symmetrical Encryption                  [ SYM ]')
+    print('  -  Hashing Function                        [ HASH ]')
+    print('\nSymmetrical Encryption Options: ')
+    print('  -  Advanced Encryption Standard 128-bit    [ AES128 ]')
+    print('  -  Advanced Encryption Standard 256-bit    [ AES256 ]')
+    print('\nHashing Function Options: ')
+    print('  -  Secure Hash Algorithm 256-bit           [ SHA256 ]')
+    print('  -  Message Digest Algorithm Series 5       [ MD5 ]')
