@@ -11,13 +11,17 @@ class dnslookup:
     print('└─────────────────┘\n')
 
     while True:
-      query: list = input("Enter Query: ").lower()
-      query = query.split()
-      if 'help' in query:
+      query: str = input("Enter Query: ").lower()
+      query: list = query.split()
+
+      # Start chosen process, else 
+      if query[0] == 'help':
         self.helpFunc()
-      elif 'exit' in query:
+      elif query[0] == 'exit':
         return
         
+  def processor(self):
+    pass
 
   def helpFunc(self):
     print(textwrap.dedent("""
@@ -28,19 +32,20 @@ class dnslookup:
 
     Record Types (optional):
       Can be left blank to recieve all found records.
+      Separate record types with hyphen (-).
 
-      -  Name Servers                   [ NS    ]
-      -  Mail Exchange Servers          [ MX    ]
-      -  Canonical Name                 [ CNAME ]
-      -  A Record (IPv4)                [ A     ]
-      -  AAAA Record (IPv6)             [ AAAA  ]
+      -  Name Servers                   [ ns    ]
+      -  Mail Exchange Servers          [ mx    ]
+      -  Canonical Name                 [ cname ]
+      -  A Record (IPv4)                [ a     ]
+      -  AAAA Record (IPv6)             [ aaaa  ]
 
     Domain Names (required):
       Can be profixed with http(s):// and/or www.
       Must contain top level domain (TLD) such as .com .net
 
     DNS IP Address (optional):
-      If left blank will resolve to DEFAULT domain name server (DNS)
+      If left blank will resolve to DEFAULT (8.8.8.8) domain name server (DNS)
       An example of a DNS IP is 8.8.8.8 for Google
 
     """))
