@@ -2,7 +2,7 @@ class cryptographer:
   def __init__(self):
     print('┌────────────────────┐')
     print('│ Cryptographer Mode │')
-    print('└────────────────────┘')
+    print('└────────────────────┘\n')
     self.helpFunc()
 
   def SYM_AES256(self, key: str) -> str:
@@ -18,7 +18,7 @@ class cryptographer:
     pass
 
   def helpFunc(self) -> None:
-    print('Cryptocrapher Mode Help')
+    print('CRYPTOGRAPHER MODE HELP')
     print('\nTypes: ')
     print('  -  Symmetrical Encryption                  [ SYM ]')
     print('  -  Hashing Function                        [ HASH ]')
