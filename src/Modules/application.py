@@ -15,7 +15,7 @@ class application:
             break
          elif option == 'cryptographer':
             crypt = cryptographer()
-         elif option == 'dnslookup':
-            dnsl = dnslookup()
+         elif option == 'networks':
+            networks = networks()
          else:
             print('Invalid Input.\n')

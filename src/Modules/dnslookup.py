@@ -27,8 +27,8 @@ class dnslookup:
     print(textwrap.dedent("""
     DNS LOOKUP MODE HELP
 
-    Usage: <record-types> <domain-name> <dns-ip-address>
-    Example: ns-a-mx example.com 8.8.8.8
+    Usage: <record-type> <domain-name> <dns-ip-address>
+    Example: ns example.com 8.8.8.8
 
     Record Types (optional):
       Can be left blank to recieve all found records.
