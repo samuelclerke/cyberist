@@ -1,5 +1,44 @@
+# Necessary Imports
+import textwrap
+import sys
+# Custom Classes
+import dnslookup
+import ping
+
 class networks:
   def __init__(self):
     print('┌─────────────────┐')
-    print('│ DNS Lookup Mode │')
+    print('│ Networking Mode │')
     print('└─────────────────┘\n')
+
+    while True:
+      query: str = input("Enter Query: ").lower().lstrip()
+      query: list = query.split()
+
+      # Start chosen process, else repeat query
+      match query[0]:
+        case 'help' | '-h':
+          self.helpFunc()
+        case 'exit' | 'return' | 'back':
+          return
+        case 'quit' | 'stop':
+          sys.exit()
+        case 'dnslookup' | '-d':
+          dnslookup = dnslookup()
+        case 'ping' | '-p':
+          ping = ping()
+        case _:
+          pass
+
+  def helpFunc(self):
+    print(textwrap.dedent("""
+    Networks Menu Help
+                          
+    Options:
+      DNS LOOKUP                  [ dnslookup, -d      ]
+      Ping Network Test           [ ping, -p           ]
+      Exit (go back)              [ exit, return, back ]
+      Quit (end program)          [ quit, stop         ]
+
+    
+    """))

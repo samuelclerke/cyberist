@@ -11,10 +11,10 @@ class dnslookup:
     print('└─────────────────┘\n')
 
     while True:
-      query: str = input("Enter Query: ").lower()
+      query: str = input("Enter Query: ").lower().lstrip()
       query: list = query.split()
 
-      # Start chosen process, else 
+      # Start chosen process, else repeat query
       if query[0] == 'help':
         self.helpFunc()
       elif query[0] == 'exit':
