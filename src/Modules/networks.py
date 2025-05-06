@@ -24,11 +24,12 @@ class networks:
         case 'quit' | 'stop':
           sys.exit()
         case 'dnslookup' | '-d':
-          dnslookup = dnslookup()
+          dnslookup()
         case 'ping' | '-p':
-          ping = ping()
+          ping()
         case _:
-          pass
+          print(f'UserInput : {query[0]} is unknown. Enter \'Help\' for help.')
+          continue
 
   def helpFunc(self):
     print(textwrap.dedent("""
@@ -39,6 +40,8 @@ class networks:
       Ping Network Test           [ ping, -p           ]
       Exit (go back)              [ exit, return, back ]
       Quit (end program)          [ quit, stop         ]
-
     
     """))
+
+if __name__ == '__main__':
+  networks = networks()
