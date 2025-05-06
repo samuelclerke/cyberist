@@ -10,6 +10,9 @@ class ping:
     target: str = self.select_target()
     repetitions: int = self.select_repetitions()
 
+    for x in range(repetitions):
+      self.ping(target)
+
        
   
   def create_packet(self, id, sequence_number):
@@ -45,6 +48,9 @@ class ping:
           return repetitions
         except ValueError as e:
           print(f'{e}\n Def: Unable to cast input string to integer. Enter a valid integer number.')
+
+  def ping(self, host):
+     pass
 
 if __name__ == '__main__':
    ping = ping()
