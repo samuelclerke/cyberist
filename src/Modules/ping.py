@@ -13,7 +13,7 @@ class ping:
     repetitions: int = self.selectRepetitions()
 
     for seq_num in range(repetitions):
-      self.ping(target, seq_num)
+      self.ping(target, seq_num+1)
 
        
   
@@ -69,14 +69,14 @@ class ping:
   def ping(self, host: str, sequence_number: int):
     # Initialise Socket and Create Unique ID
     icmp_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
-    icmp_id = random.randint(0, 65535)
+    icmp_id = 1337
     host = socket.gethostbyname(host)
 
     # Create packet and send to host with any port
     packet = self.ICMP_createPacket(icmp_id, sequence_number)
     try:
       time.sleep(1)
-      print(f' >> Sending packet {sequence_number} to {host} with ID {icmp_id}.')
+      print(f' >> Sending packet {sequence_number} to {host}.')
       icmp_socket.sendto(packet, (host, 1))
       
       icmp_socket.settimeout(1)
