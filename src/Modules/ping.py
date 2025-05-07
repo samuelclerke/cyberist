@@ -17,19 +17,19 @@ class ping:
 
        
   
-  def ICMP_createPacket(self, id, sequence_number):
-      icmp_type = 8
-      icmp_code = 0
-      checksum = 0
-      packet_id = id
-      sequence = sequence_number
+  def ICMP_createPacket(self, id: int, sequence_number: int) -> bytes:
+      icmp_type: int = 8
+      icmp_code: int = 0
+      checksum: int = 0
+      packet_id: int = id
+      sequence: int = sequence_number
 
       header: bytes = struct.pack('!BBHHH', icmp_type, icmp_code, checksum, packet_id, sequence)
-      data = b'A' * 56
+      data: bytes = b'A' * 32
 
-      checksum = self.ICMP_checksum(header + data)
-      header = struct.pack('!BBHHH', icmp_type, icmp_code, socket.htons(checksum), packet_id, sequence)
-      packet = header + data
+      checksum: int = self.ICMP_checksum(header + data)
+      header: bytes = struct.pack('!BBHHH', icmp_type, icmp_code, checksum, packet_id, sequence)
+      packet: bytes = header + data
 
       return packet
 
@@ -71,38 +71,36 @@ class ping:
     icmp_socket = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_ICMP)
     icmp_id = random.randint(0, 65535)
     host = socket.gethostbyname(host)
-    print(f'Sending packet {sequence_number} to {host} with ID {icmp_id}.')
 
     # Create packet and send to host with any port
     packet = self.ICMP_createPacket(icmp_id, sequence_number)
     try:
+      time.sleep(1)
+      print(f' >> Sending packet {sequence_number} to {host} with ID {icmp_id}.')
       icmp_socket.sendto(packet, (host, 1))
-      print(f'Packet {sequence_number} sent successfully.')
       
-      icmp_socket.settimeout(2)
+      icmp_socket.settimeout(1)
       start_time = time.time()
 
       while True:
         try:
           recv_packet, addr = icmp_socket.recvfrom(1024)
-          print(f"Received packet of length: {len(recv_packet)}")
-          print(f"Raw received packet: {recv_packet.hex()}") # Print in hexadecimal
           time_recieved = time.time()
           ttl = struct.unpack('!B', recv_packet[8:9])[0]
           icmp_type, code, checksum, packet_id, packet_sequence = struct.unpack("bbHHh", recv_packet[20:28])
  
-          if packet_id == icmp_id and packet_sequence == sequence_number and icmp_type == 0:
+          if True:
             rtt = (time_recieved - start_time) * 1000
-            print(f'Recieved reply from {addr[0]}, TTL={ttl}, RTT={rtt:.2f} ms, ID={packet_id}, Seq={packet_sequence}')
+            print(f' << Recieved reply from {addr[0]}, TTL={ttl}, RTT={rtt:.2f} ms, ID={packet_id}, Seq={packet_sequence}, PacketLength={len(recv_packet)}\n')
             return True, rtt
         except socket.timeout:
-          print(f'Request timed out for packet {sequence_number}.')
+          print(f' !! Request timed out for packet {sequence_number}.')
           return False, None
     except socket.gaierror as e:
-       print(f'Error resolving hostname: {host} - {e}')
+       print(f' !! Error resolving hostname: {host} - {e}')
        return False, None
     except socket.error as e:
-       print(f'Error Sending Packet {sequence_number}.')
+       print(f' !! Error Sending Packet {sequence_number}.')
        return False, None
     finally:
        if 'icmp_socket' in locals():
