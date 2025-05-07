@@ -24,37 +24,38 @@ class ping:
       packet_id = id
       sequence = sequence_number
 
-      header = struct.pack('!BBHHH', icmp_type, icmp_code, checksum, packet_id, sequence)
+      header: bytes = struct.pack('!BBHHH', icmp_type, icmp_code, checksum, packet_id, sequence)
       data = b'A' * 56
 
-      packet = header + data
       checksum = self.ICMP_checksum(header + data)
       header = struct.pack('!BBHHH', icmp_type, icmp_code, socket.htons(checksum), packet_id, sequence)
+      packet = header + data
 
       return packet
 
-  def ICMP_checksum(self, data):
-    s = 0
-    n = len(data) % 2
-    for i in range(0, len(data) - n, 2):
-      s += data[i] + (data[i + 1] << 8)
-    if n:
-      s += data[len(data) - 1]
-    while (s >> 16):
-        s = (s & 0xFFFF) + (s >> 16)
-    s = ~s & 0xFFFF
-    return s
+  def ICMP_checksum(self, data: bytes):
+    if len(data) % 2:
+      data += b'\x00'
+
+    checksum = 0
+    for i in range(0, len(data), 2):
+      word = data[i] << 8 | data[i+1]
+      checksum += word
+      checksum = (checksum & 0xFFFF) + (checksum >> 16)
+
+    return ~checksum & 0xFFFF
 
   def selectTarget(self) -> str:
     while True:
-        target = input("Enter Target (IP or Domain Name): ").lower().strip()
-        confirm = input(f'Is {target} correct? (Y/n): ').lower().strip()
+      target = input("Enter Target (IP or Domain Name): ").lower().strip()
+      confirm = input(f'Is {target} correct? (Y/n): ').lower().strip()
         
-        match confirm:
-           case 'y' | 'yes':
-              return target
-           case _:
-              continue
+      match confirm:
+          
+        case 'y' | 'yes':
+          return target
+        case _:
+          continue
   
   def selectRepetitions(self) -> int:
      while True:
