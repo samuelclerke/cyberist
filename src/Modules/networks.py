@@ -2,8 +2,8 @@
 import textwrap
 import sys
 # Custom Classes
-import dnslookup
-import ping
+from Modules.dnslookup import dnslookup
+from Modules.ping import ping
 
 class networks:
   def __init__(self):
