@@ -1,4 +1,4 @@
-class cryptographer:
+class Cryptographer:
   def __init__(self):
     print('┌────────────────────┐')
     print('│ Cryptographer Mode │')

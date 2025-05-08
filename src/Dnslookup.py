@@ -4,7 +4,7 @@ import sys
 import textwrap
 
 # class used for dns lookups to find information about a certain domain, ie. the domains MX, AAAA, A, and NS records.
-class dnslookup:
+class Dnslookup:
   def __init__(self):
     print('┌─────────────────┐')
     print('│ DNS Lookup Mode │')
@@ -51,4 +51,4 @@ class dnslookup:
     """))
 
 if __name__ == '__main__':
-  dnsl = dnslookup()
+  Dnslookup()

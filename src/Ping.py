@@ -3,7 +3,7 @@ import struct
 import random
 import time
 
-class ping:
+class Ping:
   def __init__(self):
     print('┌───────────────┐')
     print('│ Ping Function │')
@@ -108,4 +108,4 @@ class ping:
        
 
 if __name__ == '__main__':
-   ping = ping()
+   Ping()

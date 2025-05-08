@@ -2,10 +2,10 @@
 import textwrap
 import sys
 # Custom Classes
-from Modules.dnslookup import dnslookup
-from Modules.ping import ping
+import Dnslookup
+import Ping
 
-class networks:
+class Networks:
   def __init__(self):
     print('┌─────────────────┐')
     print('│ Networking Mode │')
@@ -24,9 +24,9 @@ class networks:
         case 'quit' | 'stop':
           sys.exit()
         case 'dnslookup' | '-d':
-          dnslookup()
+          Dnslookup()
         case 'ping' | '-p':
-          ping()
+          Ping()
         case _:
           print(f'UserInput : {query[0]} is unknown. Enter \'Help\' for help.')
           continue
@@ -44,4 +44,4 @@ class networks:
     """))
 
 if __name__ == '__main__':
-  networks = networks()
+  Networks()

@@ -1,15 +1,15 @@
 import sys
-from Modules.application import application
-import Modules.config as config
+import Application as App
+import Config as conf
 
 def main():
     try:
       if sys.argv[1].lower() == '--debug':
-        config.debug_mode = True
+        conf.debug_mode = True
     except:
        pass
 
-    app = application()
+    App()
 
 if __name__ == '__main__':
     main()
