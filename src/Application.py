@@ -1,5 +1,5 @@
 import Config as Conf
-import Cryptographer as Crypt
+from Cryptographer import Cryptographer as Crypt
 from Networks import Networks
 
 class Application:

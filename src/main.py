@@ -1,5 +1,5 @@
 import sys
-import Application as App
+from Application import Application as App
 import Config as conf
 
 def main():
