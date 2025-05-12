@@ -11,6 +11,9 @@ class Cryptographer:
   def SYM_AES128(self, key: str) -> str:
     pass
 
+  def SYM_CCRYPT(self, key: str) -> str:
+    pass
+
   def HASH_SHA256(self, input: str) -> str:
     pass
 
