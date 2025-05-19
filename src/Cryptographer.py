@@ -5,21 +5,6 @@ class Cryptographer:
     print('└────────────────────┘\n')
     self.helpFunc()
 
-  def SYM_AES256(self, key: str) -> str:
-    pass
-
-  def SYM_AES128(self, key: str) -> str:
-    pass
-
-  def SYM_CCRYPT(self, key: str) -> str:
-    pass
-
-  def HASH_SHA256(self, input: str) -> str:
-    pass
-
-  def HASH_MD5(self, input: str) -> str:
-    pass
-
   def helpFunc(self) -> None:
     print('CRYPTOGRAPHER MODE HELP')
     print('\nTypes: ')
