@@ -59,9 +59,9 @@ class Ping:
   
   def selectRepetitions(self) -> int:
      while True:
-        repetitions: str = input("Enter integer of packets to send: ").strip()
+        repetitions_string: str = input("Enter integer of packets to send: ").strip()
         try:
-          repetitions: int = int(repetitions)
+          repetitions: int = int(repetitions_string)
           return repetitions
         except ValueError as e:
           print(f'{e}\n Def: Unable to cast input string to integer. Enter a valid integer number.')

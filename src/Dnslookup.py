@@ -11,8 +11,8 @@ class Dnslookup:
     print('└─────────────────┘\n')
 
     while True:
-      query: str = input("Enter Query: ").lower().lstrip()
-      query: list = query.split()
+      query_string = input("Enter Query: ").lower().lstrip()
+      query: list = query_string.split()
 
       # Start chosen process, else repeat query
       if query[0] == 'help':
